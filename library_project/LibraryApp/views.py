@@ -8,7 +8,7 @@ User = get_user_model()
 
 # Create your views here.
 def base(request, *args, **kwargs):
-    return render(request, 'LibraryApp/base.html', {})
+    return render(request, 'base.html', {})
 
 def user_login(request, *args, **kwargs):
     if request.method == 'POST':
@@ -39,6 +39,7 @@ def register(request, *args, **kwargs):
 # def home_view(request, *args, **kwargs):
 #     return render(request, 'LibraryApp/home.html', {})
 
+# @login_required
 def home_view(request):
     books = Book.objects.all()
     authors = Author.objects.all()
@@ -47,4 +48,14 @@ def home_view(request):
         'authors' : authors
     }
     return render(request, 'LibraryApp/home.html', context)
+
+def library(request):
+    books = Book.objects.all()
+    authors = Author.objects.all()
+    context = {
+        'books' : books,
+        'authors' : authors
+    }
+    return render(request, 'LibraryApp/library.html', context)
+
 
