@@ -3,9 +3,11 @@
 {% block content %}
 
  <header>HOME.HTML HEADER</header>
-<p>dasfklja</p>
  {% for book in books %}
- <li>{{ book }}</li>
+ 
+ <h4>{{ book }}</h4>
+ <li>{{ book.author }}</li>
+ <li>{{ book.pub_date }}</li>
  {% endfor %}
 
 {% endblock %}

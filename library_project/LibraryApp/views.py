@@ -5,8 +5,10 @@ from .models import Author, Book
 
 def home(request):
     books = Book.objects.all()
+    authors = Author.objects.all()
     context = {
         'books' : books,
+        'authors' : authors
     }
     return render(request, 'LibraryApp/home.html', context)
 
