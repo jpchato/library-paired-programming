@@ -4,4 +4,12 @@
 
  <h1>Welcome to LibraryApp!</h1>
 
+ {% for book in books %}
+ 
+ <h4>{{ book }}</h4>
+ <li>{{ book.author }}</li>
+ <li>{{ book.pub_date }}</li>
+ {% endfor %}
+
 {% endblock %}
+<p>hi</p>

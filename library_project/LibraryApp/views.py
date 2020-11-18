@@ -34,7 +34,19 @@ def register(request, *args, **kwargs):
 
     return render(request, 'LibraryApp/register.html', {})
 
-@login_required
-def home_view(request, *args, **kwargs):
-    return render(request, 'LibraryApp/home.html', {})
+# @login_required
+# def home_view(request, *args, **kwargs):
+#     return render(request, 'LibraryApp/home.html', {})
+from .models import Author, Book
+
+# Create your views here.
+
+def home_view(request):
+    books = Book.objects.all()
+    authors = Author.objects.all()
+    context = {
+        'books' : books,
+        'authors' : authors
+    }
+    return render(request, 'LibraryApp/home.html', context)
 
