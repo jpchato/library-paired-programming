@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <h1>Welcome to the Library Checkout Page!</h1>
+ <header>INDEX.HTML</header>
+ {% for book in books %}
+ 
+ <h4>{{ book }}</h4>
+ <li>{{ book.author }}</li>
+ <li>Checked Out: {{ book.checked_out }}</li>
+ {% endfor %}
+
+{% endblock %}
