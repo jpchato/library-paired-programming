@@ -50,12 +50,25 @@ def home_view(request):
     return render(request, 'LibraryApp/home.html', context)
 
 def library(request):
+    
     books = Book.objects.all()
     authors = Author.objects.all()
+
+    # if request.method == 'GET':
     context = {
         'books' : books,
         'authors' : authors
     }
-    return render(request, 'LibraryApp/library.html', context)
+
+    book_title = request.POST['book_title']
+    single_book = Book.objects.get(title = book_title)
+    print(single_book)
+    # product.in_cart = True
+    #     product.save()
+    single_book.checked_out = not single_book.checked_out
+    single_book.save()
+
+    return render (request, 'LibraryApp/library.html', context)
+    
 
 

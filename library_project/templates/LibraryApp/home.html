@@ -14,9 +14,14 @@
             <h4>{{ book }}</h4>
             <li>{{ book.author }}</li>
             <div class="row">
-                <li>Checked Out: {{ book.checked_out }}</li>
+                <li>Checked Out: {{ book.checked_out }}</li><br>
                 {% if book.checked_out == False %}
-                <button>Check out</button>
+                
+                <!-- <button>Check out</button> -->
+                <form action="{% url 'home' %}" method='POST'>
+                {% csrf_token %}
+                <input type="checkbox" name='book_checkout'>
+                <input type="submit" value='Check Out'><br>
                 {% endif %}
             </div>
             {% endfor %}
