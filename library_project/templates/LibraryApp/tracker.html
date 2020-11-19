@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>User Tracking</h4>
+{% for user in users %}
+
+ {{ user.get_username }}
+{% endfor %}
+
+{% endblock %}
