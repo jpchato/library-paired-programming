@@ -17,3 +17,9 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+class ActiveUsers(models.Model):
+    user = models.CharField(max_length=50)
+    book = models.CharField(max_length=50)
+    checkout = models.Boolean()
+    timestamp = models.DateTimeField()
