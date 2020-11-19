@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
 
- <h1>Welcome to the Library Checkout Page!</h1>
- <header>INDEX.HTML</header>
- {% for book in books %}
- 
- <h4>{{ book }}</h4>
- <li>{{ book.author }}</li>
- <li>Checked Out: {{ book.checked_out }}</li>
- {% endfor %}
+    <div class="row">
+        <div class="col-offset-1">
+            <h1>Check In/Out:</h1>
+        
+            <h3>Select books</h3>
+            <br>
+            {% for book in books %}
+            
+            <h4>{{ book }}</h4>
+            <li>{{ book.author }}</li>
+            <div class="row">
+                <!-- THOUGHT --- CAN I SEND THE BOOK TITLE ON THIS POST??? -->
+                {% if book.checked_out == False %}
+                    <form action="{% url 'library' %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="submit" name='book_checkout' value='Check Out'>
+                    <input type="hidden" name='book_title' value='{{ book.title }}'>
+                    </form>
+                {% else %}
+                    <li>{{ book.title}} is checked out</li>
+                    <form action="{% url 'library' %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="submit" name='book_checkout' value='Check In'>
+                    <input type="hidden" name='book_title' value='{{ book.title }}'>
+                    </form>
+                {% endif %}
+                
+            </div>
+            {% endfor %}
 
+        </div>
+
+    </div>
+</div>
 {% endblock %}
