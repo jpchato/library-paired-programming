@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Author, Book, ActiveUsers
 
 User = get_user_model()
+users = User.objects.all()
 
 # Create your views here.
 def base(request, *args, **kwargs):
@@ -71,6 +72,17 @@ def library(request):
         single_book.save()
 
         return render (request, 'LibraryApp/library.html', context)
+
+def tracker(request):
+    print(users)
+    books = Book.objects.all()
+    authors = Author.objects.all()
+    context = {
+            'books' : books,
+            'authors' : authors,
+            'users' : users
+        }
+    return render (request, 'LibraryApp/tracker.html', context)
     
 
 
